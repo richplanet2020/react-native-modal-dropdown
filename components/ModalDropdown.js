@@ -188,6 +188,7 @@ export default class ModalDropdown extends Component {
         disabled={disabled}
         accessible={accessible}
         onPress={this._onButtonPress}
+        activeOpacity={1}
       >
         {children || (
           <View style={styles.button}>
