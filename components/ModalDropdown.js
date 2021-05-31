@@ -397,7 +397,7 @@ export default class ModalDropdown extends Component {
       }
     }
 
-    return <TouchableHighlight {...preservedProps}>{row}</TouchableHighlight>;
+    return <TouchableOpacity {...preservedProps}>{row}</TouchableOpacity>;
   };
 
   _onRowPress(rowData, rowID, highlightRow) {
