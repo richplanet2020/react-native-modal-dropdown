@@ -360,34 +360,32 @@ export default class ModalDropdown extends Component {
       renderRow(item, index, highlighted)
     );
     const preservedProps = {
-      key,
       accessible,
       onPress: () => this._onRowPress(item, index, separators),
     };
 
     if (TOUCHABLE_ELEMENTS.find(name => name === row.type.displayName)) {
       const props = { ...row.props };
-      props.key = preservedProps.key;
       props.onPress = preservedProps.onPress;
       const { children } = row.props;
 
       switch (row.type.displayName) {
         case 'TouchableHighlight': {
-          return <TouchableHighlight {...props}>{children}</TouchableHighlight>;
+          return <TouchableHighlight key={key} {...props}>{children}</TouchableHighlight>;
         }
         case 'TouchableOpacity': {
-          return <TouchableOpacity {...props}>{children}</TouchableOpacity>;
+          return <TouchableOpacity key={key} {...props}>{children}</TouchableOpacity>;
         }
         case 'TouchableWithoutFeedback': {
           return (
-            <TouchableWithoutFeedback {...props}>
+            <TouchableWithoutFeedback key={key} {...props}>
               {children}
             </TouchableWithoutFeedback>
           );
         }
         case 'TouchableNativeFeedback': {
           return (
-            <TouchableNativeFeedback {...props}>
+            <TouchableNativeFeedback key={key} {...props}>
               {children}
             </TouchableNativeFeedback>
           );
@@ -397,7 +395,7 @@ export default class ModalDropdown extends Component {
       }
     }
 
-    return <TouchableOpacity {...preservedProps}>{row}</TouchableOpacity>;
+    return <TouchableOpacity key={key} {...preservedProps}>{row}</TouchableOpacity>;
   };
 
   _onRowPress(rowData, rowID, highlightRow) {
